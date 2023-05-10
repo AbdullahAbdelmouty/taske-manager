@@ -8,7 +8,7 @@ require("dotenv").config();
 // middleware
 app.use(express.json());
 // const path = require("path");
-// app.use(express.static("./public"));
+app.use(express.static("./public"));
 app.use('/api/v1/tasks',tasks)
 app.use(notFound)
 app.use(errorHandlerMidlleware)

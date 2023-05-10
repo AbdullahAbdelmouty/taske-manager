@@ -1,0 +1,140 @@
+body{
+    background-color: #e3e9ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+.title{
+    width: calc(20vw + 130px);
+    align-items: center;
+    background-color: #af7eeb;
+    margin: 0;
+    border-radius: 15px;
+    padding: 0 26px;
+}
+.title h1{
+    text-align: center;
+    margin: 0;
+    color: white;
+    padding: 20px;
+}
+#tasksForm{
+    width: calc(20vw + 130px);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+input[type="text"],input[type="datetime-local"],textarea{
+    width: 100%;
+    color: #af7eeb;
+    border: 0;
+    border-radius: 10px;
+    padding: 5px;
+}
+input[type="text"]:focus-visible,input[type="datetime-local"],textarea:focus-visible{
+    outline: 0;
+    padding: 5px;
+}
+#postData{
+    color: white;
+    background-color: #af7eeb;
+    border-radius: 30px;
+    width: fit-content;
+    padding: 5px 8px 5px 5px;
+}
+/* .newTaskInputs{
+    display: none;
+} */
+#tasksList{
+    width: calc(20vw + 130px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 26px;
+    border-radius: 15px;
+}
+.singleTask{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(20vw + 130px);
+    /* gap: 1vw; */
+}
+
+.taskName{
+    margin: 0;
+    padding: 1vw;
+    color: #8f99bd;
+}
+.btn{
+    border: 0;
+    background-color: transparent;
+    color: #af7eeb;
+}
+.editBtn{
+    border: 0;
+    background-color: transparent;
+    color: #af7eeb;
+    background-color: #ffff;
+}
+.newTaskInputs{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.updateBtn{
+    margin-right: 1vw;
+    border: 0;
+    background-color: transparent;
+    color: #af7eeb;
+}
+
+/*popup*/
+.popup{
+    width: calc(20vw + 130px);
+    padding: 15px 26px 15px 26px;
+    border-radius: 15px;
+    background-color: #af7eeb;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, 3%);
+};
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    margin-right: 5px;
+    /* Set the background color of the checkbox to white */
+    background-color: #fff;
+  }
+.popup div{
+    display: flex;
+    justify-content: space-between;
+}
+.topSection h2{
+    margin: 0;
+    color: white;
+}
+.fields{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.fields input{
+    width: 95%;
+}
+.footer{
+    display: flex;
+    justify-content: center;
+}

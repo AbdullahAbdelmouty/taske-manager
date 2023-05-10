@@ -37,6 +37,8 @@ const updateTask = asyncWrapper( async(req,res)=>{
             runValidators:true
         })
 
+        res.status(200).json({status:"success",data:task})
+
         if(!task){
             res.status(404).json({msg:`No task with this id ${taskID}`})
         }
