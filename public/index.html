@@ -11,23 +11,26 @@
 </head>
 <body>
     <div class="title"><h1>Task Manager</h1></div>
+    <Section class="newTaskSection">
+        <button type="submit" id="pluse" class="btn"><i style="padding: 4px;  font-size: 26px;" class="fa-solid fa-plus"></i>
+        </button>
+        <form action="" id="tasksForm">
+            <div class="newTaskInputs">
+                <input type="text" name="name" placeholder="Name">
+                <label for="startTime">Start Time</label>
+                <input type="datetime-local" name="startTime" id="startTime"/>
+                <label for="endTime">End Time</label>
+                <input type="datetime-local" name="endTime" id="endTime"/>
+                <textarea type="text" name="discreption" placeholder="Discreption"></textarea>
+                <div class="submitC"><button type="submit" id="postData" class="btn"><i style="padding: 4px;" class="fa-solid fa-plus"></i>New Task</button>
+                </div>
+            </div>
+        </form>
+    </Section>
     <section id="tasksList">
     </section>
-    <button type="submit" id="pluse" class="btn"><i style="padding: 4px;  font-size: 26px;" class="fa-solid fa-plus"></i>
-    </button>
-    <form action="" id="tasksForm">
-        <div class="newTaskInputs">
-            <input type="text" name="name" placeholder="Name">
-            <label for="startTime">Start Time</label>
-            <input type="datetime-local" name="startTime" id="startTime"/>
-            <label for="endTime">End Time</label>
-            <input type="datetime-local" name="endTime" id="endTime"/>
-            <textarea type="text" name="discreption" placeholder="Discreption"></textarea>
-            <button type="submit" id="postData" class="btn"><i style="padding: 4px;" class="fa-solid fa-plus"></i>New Task</button>
-        </div>
-    </form>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

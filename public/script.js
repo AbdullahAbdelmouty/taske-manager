@@ -46,36 +46,58 @@ const showAllTasks = (res)=>{
             const popup = document.createElement("div");
             popup.setAttribute("id",`popup${task._id}`);
             popup.classList.add("popup")
-            popup.innerHTML = `<div class="topSection" style="
+            popup.innerHTML = `<div class="popup2"><div class="topSection" style="
             display: flex;
             justify-content: space-between;
-            "><h2>Edit Task</h2> <button class="closeBtn">x</button></div>
+            "><h2>Edit Task</h2> <button class="closeBtn btn"><i class="fa-solid fa-xmark"></i></button></div>
             <div class="fields"><input type="text" class="nameField" value='${task.name}'/>
             <textarea type"text" class="discreption" value=''>${task.discreption}</textarea>
             <input type="datetime-local" class="updateStartTime" />
             <input type="datetime-local" class="updateEndTime" />
             </div>
-            <div><input type="checkbox"class="check"/></div>
-            <div class="footer"><button class="editBtn">Edit</button></div>
-            </div>`;
+            <div class="checkCont" style="display: flex; padding: 6px">
+            <input type="checkbox"class="check"/>
+            <label>Completed</label>
+            </div>
+            <div class="footer"><button class="editBtn btn">Edit</button></div>
+            </div> `;
             const body = document.body;
             document.body.appendChild(popup);
+            //style popup
+                const popupCont = document.querySelector(".popup2");
+                const closeBtn = document.querySelector(".closeBtn");
+                const editBtn = document.querySelector(".editBtn");
+                popupCont.style.background ="#af7eeb";
+                popupCont.style.padding ="30px";
+                popupCont.style.borderRadius  ="30px";   
+                closeBtn.style.color = "white";
+                closeBtn.style.fontSize = "20px";
+                editBtn.style.color = "white";
+                editBtn.style.fontSize = "20px";
+                editBtn.style.padding=" 10px 0 0 0";
             //update task
-            const editBtn = document.querySelector(".editBtn");
-            const closeBtn = document.querySelector(".closeBtn");
             const nameField = document.querySelector(".nameField");
             const discreptionField = document.querySelector(".discreption")
             const updateStartTime = document.querySelector(".updateStartTime");
             const updateEndTime = document.querySelector(".updateEndTime");
-            ///////
-            // const utcTimeS = `${task.startTime}`;
-            // const date = new Date(utcTimeS);
-            // updateStartTime.value = date.toISOString().substring(0,16);
-            // console.log(task.endTime);
-            // const utcTimeE = `${task.endTime}`;
-            // const date2 = new Date(utcTimeE);
-            // updateEndTime.value = date2.toISOString().substring(0,16);
-            //////////
+            //Start Time
+            const utcTimeS = `${task.startTime}`;
+            const date = new Date(utcTimeS);
+            let localDate;
+            if(hasDST(new Date(date))){
+                localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000 -60*60000); 
+            }
+            updateStartTime.value = localDate.toISOString().substring(0,16);
+            //end Time
+            const utcTimeE = `${task.endTime}`;
+            console.log(task.endTime);
+            const date2 = new Date(utcTimeE);
+            let localDate2;
+            if(hasDST(new Date(date2))){
+                localDate2 = new Date(date2.getTime() - date2.getTimezoneOffset() * 60000 -60*60000); 
+            }
+            updateEndTime.value = localDate2.toISOString().substring(0,16);
+            //chick box
             const completed = document.querySelector(".check");
             task.completed? completed.checked = true : completed.checked = false;
             completed.addEventListener("click",(e)=>{
@@ -87,6 +109,7 @@ const showAllTasks = (res)=>{
                     name: `${nameField.value}`,
                     discreption: `${discreptionField.value}`,
                     startTime:updateStartTime.value,
+                    endTime: updateEndTime.value,
                     completed: isCompleted,
                 }).then(res=> console.log(res))
             })
@@ -125,7 +148,7 @@ const showAllTasks = (res)=>{
         e.preventDefault();
         //create task 
         const date = new Date();
-        const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000); 
+        const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000 ); 
         e.target.children[0].children[2].value = localDate.toISOString().substring(0, 16);
         const formData = new FormData(e.target);
         console.log(formData);
@@ -140,7 +163,13 @@ const showAllTasks = (res)=>{
             showAllTasks(singleTaskArr)})
         .catch( error => console.log(error))
     })
- 
+    //check for daylight saving time (DST)
+    function hasDST(date = new Date()) {
+        const january = new Date(date.getFullYear(), 0, 1).getTimezoneOffset();
+        const july = new Date(date.getFullYear(), 6, 1).getTimezoneOffset();
+        return Math.max(january, july) !== date.getTimezoneOffset();
+      }
+      
 
 
 

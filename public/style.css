@@ -19,6 +19,19 @@ body{
     color: white;
     padding: 20px;
 }
+.submitC{
+    display: flex;
+    justify-content: center;
+}
+
+.newTaskSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.newTaskInputs label{
+    color: #af7eeb;
+}
 #tasksForm{
     width: calc(20vw + 130px);
     display: none;
@@ -74,12 +87,7 @@ input[type="text"]:focus-visible,input[type="datetime-local"],textarea:focus-vis
     background-color: transparent;
     color: #af7eeb;
 }
-.editBtn{
-    border: 0;
-    background-color: transparent;
-    color: #af7eeb;
-    background-color: #ffff;
-}
+
 .newTaskInputs{
     display: flex;
     flex-direction: column;
@@ -96,32 +104,46 @@ input[type="text"]:focus-visible,input[type="datetime-local"],textarea:focus-vis
 }
 /*popup*/
 .popup{
-    width: calc(20vw + 130px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #af7eeb69;
+    /* width: calc(20vw + 130px);
     padding: 15px 26px 15px 26px;
     border-radius: 15px;
     background-color: #af7eeb;
     position: absolute;
     top: 15%;
     left: 50%;
-    transform: translate(-50%, 3%);
+    transform: translate(-50%, 3%); */
 };
-input[type="checkbox"] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    outline: none;
-    cursor: pointer;
-    margin-right: 5px;
-    /* Set the background color of the checkbox to white */
-    background-color: #fff;
-  }
-.popup div{
-    display: flex;
-    justify-content: space-between;
+.popup2{
+    background-color: #af7eeb;
+    padding: 40px;
+    border-radius: 20px;
+    transform: translate(-50%, 3%);
+}
+.checkCont label{
+    color: white;
+};
+input[type ="checkbox"] {
+    background-color: red
+};
+.editBtn{
+    font-size: 20px;
+    border: 0;
+    background-color: transparent;
+    color: white;
+};
+.topSection{
+    padding: 10px 0px;
 }
 .topSection h2{
     margin: 0;
@@ -132,10 +154,12 @@ input[type="checkbox"] {
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    padding: 10px 0px;
 }
 .fields input{
-    width: 95%;
+    width: 100%;
 }
+
 .footer{
     display: flex;
     justify-content: center;
