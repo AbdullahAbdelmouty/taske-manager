@@ -91,7 +91,9 @@ input[type="text"]:focus-visible,input[type="datetime-local"],textarea:focus-vis
     background-color: transparent;
     color: #af7eeb;
 }
-
+.negative::before {
+    content: "\f068" !important;
+}
 /*popup*/
 .popup{
     width: calc(20vw + 130px);

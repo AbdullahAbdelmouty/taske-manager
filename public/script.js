@@ -68,23 +68,21 @@ const showAllTasks = (res)=>{
             const updateStartTime = document.querySelector(".updateStartTime");
             const updateEndTime = document.querySelector(".updateEndTime");
             ///////
-            const utcTimeS = `${task.startTime}`;
-            const date = new Date(utcTimeS);
-            updateStartTime.value = date.toISOString().substring(0,16);
-            console.log(task.endTime);
-            const utcTimeE = `${task.endTime}`;
-            const date2 = new Date(utcTimeE);
-            updateEndTime.value = date2.toISOString().substring(0,16);
+            // const utcTimeS = `${task.startTime}`;
+            // const date = new Date(utcTimeS);
+            // updateStartTime.value = date.toISOString().substring(0,16);
+            // console.log(task.endTime);
+            // const utcTimeE = `${task.endTime}`;
+            // const date2 = new Date(utcTimeE);
+            // updateEndTime.value = date2.toISOString().substring(0,16);
             //////////
             const completed = document.querySelector(".check");
             task.completed? completed.checked = true : completed.checked = false;
             completed.addEventListener("click",(e)=>{
                 !e.target.checked ? isCompleted=false:isCompleted=true;
             })
+            //edit button in edit form
             editBtn.addEventListener("click",()=>{
-                console.log(task._id);
-                console.log(nameField.value);
-                console.log(updateStartTime.value,"up");
                 axios.patch(`api/v1/tasks/${task._id}`,{
                     name: `${nameField.value}`,
                     discreption: `${discreptionField.value}`,
@@ -92,11 +90,13 @@ const showAllTasks = (res)=>{
                     completed: isCompleted,
                 }).then(res=> console.log(res))
             })
+            //close button in edit form
             closeBtn.addEventListener("click",()=>{
                 const oneTask = document.getElementById(`popup${task._id}`);
                 oneTask.remove()
             })
         })
+        //put line over title task if it completed
         if(task.completed){
             const taskNameStyle = document.getElementById(`${task._id}`);
             console.log(task.name);
@@ -104,15 +104,23 @@ const showAllTasks = (res)=>{
         }
     });
 }
+    //diplay all tasks on the screen
     axios.get("api/v1/tasks").then(res=>showAllTasks(res.data.data.tasks))
     .catch( error => console.log(error))
-
+    //toggel form and pluse icon
     const form = document.getElementById("tasksForm");
     const newTaskInputs = document.getElementById("tasksForm");
-    const pluseBtn = document.getElementById("pluse")
-    pluseBtn.addEventListener("click",()=>{
-        newTaskInputs.style.display = "flex"
+    const pluseBtn = document.querySelector("#pluse")
+    pluseBtn.addEventListener("click",(e)=>{
+        
+        e.target.classList.toggle("negative");
+        if(e.target.classList.contains("negative")){
+            newTaskInputs.style.display = "flex";
+        }else{
+            newTaskInputs.style.display = "none";
+        }
     })
+    //new task
     form.addEventListener("submit",(e)=>{
         e.preventDefault();
         //create task 
