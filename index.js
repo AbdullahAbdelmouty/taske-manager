@@ -5,10 +5,14 @@ const connectDB = require('./db/connect');
 const notFound = require("./middleware.js/not-found");
 const errorHandlerMidlleware = require("./middleware.js/error-handler");
 require("dotenv").config();
+const path = require("path");
 // middleware
 app.use(express.json());
 // const path = require("path");
 app.use(express.static("./public"));
+app.get('/',(req,res)=>{
+    res.sendFile(path.resolve(__dirname,'./public'))
+})
 app.use('/api/v1/tasks',tasks)
 app.use(notFound)
 app.use(errorHandlerMidlleware)
