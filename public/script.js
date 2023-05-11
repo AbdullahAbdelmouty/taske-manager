@@ -163,6 +163,8 @@ const showAllTasks = (res)=>{
             const date = new Date();
             const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000 ); 
             e.target.children[0].children[2].value = localDate.toISOString().substring(0, 16);
+            console.log(formDataObj.endTime);
+            console.log(formDataObj.startTime);
             axios.post(`${API}`,formDataObj)
             .then(res=>console.log(res))
             .catch(error=>console.log(error))
