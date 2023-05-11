@@ -151,7 +151,7 @@ const showAllTasks = (res)=>{
         const formDataObj = Object.fromEntries(formData.entries());
         console.log(formDataObj);
         console.log(formDataObj.endTime);
-        if(formDataObj.endTime===null){
+        if(formDataObj.endTime===""){
             alert("please provied end time")
         }
         e.preventDefault();
