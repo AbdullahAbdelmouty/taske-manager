@@ -146,15 +146,19 @@ const showAllTasks = (res)=>{
     })
     //new task
     form.addEventListener("submit",(e)=>{
+        const formData = new FormData(e.target);
+        console.log(formData);
+        const formDataObj = Object.fromEntries(formData.entries());
+        console.log(formDataObj);
+        console.log(formDataObj.endTime);
+        if(formDataObj.endTime===null){
+            alert("please provied end time")
+        }
         e.preventDefault();
         //create task 
         const date = new Date();
         const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000 ); 
         e.target.children[0].children[2].value = localDate.toISOString().substring(0, 16);
-        const formData = new FormData(e.target);
-        console.log(formData);
-        const formDataObj = Object.fromEntries(formData.entries());
-        console.log(formDataObj);
         axios.post(`${API}`,formDataObj)
         .then(res=>console.log(res))
         .catch(error=>console.log(error))

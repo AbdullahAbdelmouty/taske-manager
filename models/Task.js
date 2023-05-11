@@ -19,8 +19,7 @@ const taskSchema = new mongoose.Schema({
     },
     endTime:{
         type:Date,
-        require: [true,"You must provide start time"],
-        default: Date.now()+60*60*60*1000*24
+        require: [true,"You must provide start time"]
     },
     completed:{
         type:Boolean,
