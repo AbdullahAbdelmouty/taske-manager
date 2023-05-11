@@ -15,7 +15,7 @@ const taskSchema = new mongoose.Schema({
     startTime:{
         type:Date,
         require: [true,"You must provide start time"],
-        default: Date.now()
+        default: Date.now(),
     },
     endTime:{
         type:Date,
