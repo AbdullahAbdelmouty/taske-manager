@@ -1,4 +1,5 @@
 
+const API = 'https://taske-manager.vercel.app/api/v1/tasks'
 //Get All Tasks
 const showAllTasks = (res)=>{
     const tasksContainer = document.getElementById("tasksList");
@@ -31,7 +32,7 @@ const showAllTasks = (res)=>{
             console.log(e.target);
             const dataId = e.target.parentNode.getAttribute("data-user-id");
             const parent = e.target.parentNode.parentNode.parentNode;
-            axios.delete(`api/v1/tasks/${dataId}`)
+            axios.delete(`${API}/${dataId}`)
             .then(res=>{
                 console.log(res);
                 parent.remove();
@@ -105,7 +106,7 @@ const showAllTasks = (res)=>{
             })
             //edit button in edit form
             editBtn.addEventListener("click",()=>{
-                axios.patch(`api/v1/tasks/${task._id}`,{
+                axios.patch(`${API}/${task._id}`,{
                     name: `${nameField.value}`,
                     discreption: `${discreptionField.value}`,
                     startTime:updateStartTime.value,
@@ -128,7 +129,7 @@ const showAllTasks = (res)=>{
     });
 }
     //diplay all tasks on the screen
-    axios.get("api/v1/tasks").then(res=>showAllTasks(res.data.data.tasks))
+    axios.get(`${API}`).then(res=>showAllTasks(res.data.data.tasks))
     .catch( error => console.log(error))
     //toggel form and pluse icon
     const form = document.getElementById("tasksForm");
@@ -154,11 +155,11 @@ const showAllTasks = (res)=>{
         console.log(formData);
         const formDataObj = Object.fromEntries(formData.entries());
         console.log(formDataObj);
-        axios.post("api/v1/tasks",formDataObj)
+        axios.post(`${API}`,formDataObj)
         .then(res=>console.log(res))
         .catch(error=>console.log(error))
         //add new task
-        axios.get("api/v1/tasks").then(res=>{
+        axios.get(`${API}`).then(res=>{
             const singleTaskArr = [res.data.data.tasks[res.data.data.tasks.length-1]]
             showAllTasks(singleTaskArr)})
         .catch( error => console.log(error))
