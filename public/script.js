@@ -20,6 +20,9 @@ const showAllTasks = (res)=>{
         updateBtn.classList.add("updateBtn","btn");
         updateBtn.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>'
         updateBtn.dataset.userId = task._id;
+        const completedBtn = document.createElement('button');
+        completedBtn.classList.add("check");
+        completedBtn.setAttribute("type","checkbox")
         const btnContainer = document.createElement("div");
         btnContainer.appendChild(updateBtn)
         btnContainer.appendChild(deleteBtn)
@@ -146,6 +149,7 @@ const showAllTasks = (res)=>{
     })
     //new task
     form.addEventListener("submit",(e)=>{
+        e.preventDefault();
         const endTimeError = document.querySelector(".endTimeError")
         const formData = new FormData(e.target);
         console.log(formData);
@@ -155,7 +159,6 @@ const showAllTasks = (res)=>{
         if(formDataObj.endTime===""){
             endTimeError.textContent = "Please Provide End Time"
         }else{
-            e.preventDefault();
             //create task 
             const date = new Date();
             const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000 ); 

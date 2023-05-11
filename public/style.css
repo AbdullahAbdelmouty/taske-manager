@@ -86,6 +86,7 @@ input[type="text"]:focus-visible,input[type="datetime-local"],textarea:focus-vis
     border: 0;
     background-color: transparent;
     color: #af7eeb;
+    cursor: pointer;
 }
 
 .newTaskInputs{
