@@ -20,11 +20,7 @@ const showAllTasks = (res)=>{
         updateBtn.classList.add("updateBtn","btn");
         updateBtn.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>'
         updateBtn.dataset.userId = task._id;
-        const completedBtn = document.createElement('button');
-        completedBtn.classList.add("check");
-        completedBtn.setAttribute("type","checkbox")
         const btnContainer = document.createElement("div");
-        btnContainer.appendChild(completedBtn);
         btnContainer.appendChild(updateBtn)
         btnContainer.appendChild(deleteBtn)
         taskContainer.appendChild(taskName);
@@ -72,6 +68,7 @@ const showAllTasks = (res)=>{
                 const popupCont = document.querySelector(".popup2");
                 const closeBtn = document.querySelector(".closeBtn");
                 const editBtn = document.querySelector(".editBtn");
+                const checkboxBtn = document.querySelector(".check");
                 popupCont.style.background ="#af7eeb";
                 popupCont.style.padding ="30px";
                 popupCont.style.borderRadius  ="30px";   
@@ -80,6 +77,7 @@ const showAllTasks = (res)=>{
                 editBtn.style.color = "white";
                 editBtn.style.fontSize = "20px";
                 editBtn.style.padding=" 10px 0 0 0";
+                checkboxBtn.style.cursor = "pointer";
             //update task
             const nameField = document.querySelector(".nameField");
             const discreptionField = document.querySelector(".discreption")

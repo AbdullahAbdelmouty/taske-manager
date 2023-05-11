@@ -116,14 +116,6 @@ input[type="text"]:focus-visible,input[type="datetime-local"],textarea:focus-vis
     height: 100%;
     overflow: auto;
     background-color: #af7eeb69;
-    /* width: calc(20vw + 130px);
-    padding: 15px 26px 15px 26px;
-    border-radius: 15px;
-    background-color: #af7eeb;
-    position: absolute;
-    top: 15%;
-    left: 50%;
-    transform: translate(-50%, 3%); */
 };
 .popup2{
     background-color: #af7eeb;
@@ -134,9 +126,7 @@ input[type="text"]:focus-visible,input[type="datetime-local"],textarea:focus-vis
 .checkCont label{
     color: white;
 };
-input[type ="checkbox"] {
-    background-color: red
-};
+
 .editBtn{
     font-size: 20px;
     border: 0;
