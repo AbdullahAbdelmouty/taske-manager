@@ -146,13 +146,14 @@ const showAllTasks = (res)=>{
     })
     //new task
     form.addEventListener("submit",(e)=>{
+        const endTimeError = document.querySelector(".endTimeError")
         const formData = new FormData(e.target);
         console.log(formData);
         const formDataObj = Object.fromEntries(formData.entries());
         console.log(formDataObj);
         console.log(formDataObj.endTime);
         if(formDataObj.endTime===""){
-            alert("please provied end time")
+            endTimeError.textContent = "Please Provide End Time"
         }else{
             e.preventDefault();
             //create task 
