@@ -153,20 +153,21 @@ const showAllTasks = (res)=>{
         console.log(formDataObj.endTime);
         if(formDataObj.endTime===""){
             alert("please provied end time")
+        }else{
+            e.preventDefault();
+            //create task 
+            const date = new Date();
+            const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000 ); 
+            e.target.children[0].children[2].value = localDate.toISOString().substring(0, 16);
+            axios.post(`${API}`,formDataObj)
+            .then(res=>console.log(res))
+            .catch(error=>console.log(error))
+            //add new task
+            axios.get(`${API}`).then(res=>{
+                const singleTaskArr = [res.data.data.tasks[res.data.data.tasks.length-1]]
+                showAllTasks(singleTaskArr)})
+            .catch( error => console.log(error))
         }
-        e.preventDefault();
-        //create task 
-        const date = new Date();
-        const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000 ); 
-        e.target.children[0].children[2].value = localDate.toISOString().substring(0, 16);
-        axios.post(`${API}`,formDataObj)
-        .then(res=>console.log(res))
-        .catch(error=>console.log(error))
-        //add new task
-        axios.get(`${API}`).then(res=>{
-            const singleTaskArr = [res.data.data.tasks[res.data.data.tasks.length-1]]
-            showAllTasks(singleTaskArr)})
-        .catch( error => console.log(error))
     })
     //check for daylight saving time (DST)
     function hasDST(date = new Date()) {
