@@ -156,15 +156,17 @@ const showAllTasks = (res)=>{
         const formDataObj = Object.fromEntries(formData.entries());
         console.log(formDataObj);
         console.log(formDataObj.endTime);
-        if(formDataObj.endTime===""){
+        if(formDataObj.startTime===""){
+            endTimeError.textContent = "Please Provide Start Time"
+        }
+        else if(formDataObj.endTime===""){
             endTimeError.textContent = "Please Provide End Time"
-        }else{
+        }
+        else{
             //create task 
             const date = new Date();
             const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000 ); 
             e.target.children[0].children[2].value = localDate.toISOString().substring(0, 16);
-            console.log(formDataObj.endTime);
-            console.log(formDataObj.startTime);
             axios.post(`${API}`,formDataObj)
             .then(res=>console.log(res))
             .catch(error=>console.log(error))
