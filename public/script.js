@@ -24,6 +24,7 @@ const showAllTasks = (res)=>{
         completedBtn.classList.add("check");
         completedBtn.setAttribute("type","checkbox")
         const btnContainer = document.createElement("div");
+        btnContainer.appendChild(completedBtn);
         btnContainer.appendChild(updateBtn)
         btnContainer.appendChild(deleteBtn)
         taskContainer.appendChild(taskName);
