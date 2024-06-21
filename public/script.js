@@ -166,11 +166,11 @@ const showAllTasks = (res)=>{
             const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000 ); 
             e.target.children[0].children[2].value = localDate.toISOString().substring(0, 16);
             axios.post(`${API}`,formDataObj)
-            .then(res=>console.log(res.data))
+            .then(res=>showAllTasks(res.data.data.tasks))
             .catch(error=>console.log(error))
             //add new task
-            axios.get(`${API}`).then(res=>{
-                const singleTaskArr = res.data.data.tasks;
+                axios.get(`${API}`).then(res=>{
+                const singleTaskArr = [res.data.data.tasks[res.data.data.tasks.length-1]]
                 showAllTasks(singleTaskArr)})
             .catch( error => console.log(error))
             // axios.get(`${API}`).then(res=>{
