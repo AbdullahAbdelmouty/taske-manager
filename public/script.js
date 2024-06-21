@@ -169,11 +169,14 @@ const showAllTasks = (res)=>{
             axios.post(`${API}`,formDataObj)
             .then(res=>console.log(res))
             .catch(error=>console.log(error))
-            //add new task
-            axios.get(`${API}`).then(res=>{
-                const singleTaskArr = [res.data.data.tasks[res.data.data.tasks.length-1]]
-                showAllTasks(singleTaskArr)})
+            //diplay all tasks on the screen
+            axios.get(`${API}`).then(res=>showAllTasks(res.data.data.tasks))
             .catch( error => console.log(error))
+            // //add new task
+            // axios.get(`${API}`).then(res=>{
+            //     const singleTaskArr = [res.data.data.tasks[res.data.data.tasks.length-1]]
+            //     showAllTasks(singleTaskArr)})
+            // .catch( error => console.log(error))
         }
     })
     //check for daylight saving time (DST)
