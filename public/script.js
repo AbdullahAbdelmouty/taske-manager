@@ -1,4 +1,5 @@
-const API = process.env.API
+
+const API = 'https://taske-manager.vercel.app/api/v1/tasks'
 //Get All Tasks
 const showAllTasks = (res)=>{
     const tasksContainer = document.getElementById("tasksList");
@@ -169,14 +170,10 @@ const showAllTasks = (res)=>{
             .then(res=>console.log(res))
             .catch(error=>console.log(error))
             //add new task
-                axios.get(`${API}`).then(res=>{
+            axios.get(`${API}`).then(res=>{
                 const singleTaskArr = [res.data.data.tasks[res.data.data.tasks.length-1]]
                 showAllTasks(singleTaskArr)})
             .catch( error => console.log(error))
-            // axios.get(`${API}`).then(res=>{
-            //     const singleTaskArr = [res.data.data.tasks[res.data.data.tasks.length-1]]
-            //     showAllTasks(singleTaskArr)})
-            // .catch( error => console.log(error))
         }
     })
     //check for daylight saving time (DST)
