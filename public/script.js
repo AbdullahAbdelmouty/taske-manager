@@ -114,7 +114,14 @@ const showAllTasks = (res)=>{
                     startTime:updateStartTime.value,
                     endTime: updateEndTime.value,
                     completed: isCompleted,
-                }).then(res=> console.log(res))
+                }).then(res=> {
+                    const oneTask = document.getElementById(`popup${task._id}`);
+                    oneTask.remove()
+                }).then(res=>{
+                    //diplay all tasks on the screen
+                    axios.get(`${API}`).then(res=>showAllTasks(res.data.data.tasks))
+                    .catch( error => console.log(error))
+                })
             })
             //close button in edit form
             closeBtn.addEventListener("click",()=>{
@@ -168,11 +175,6 @@ const showAllTasks = (res)=>{
         axios.post(`${API}`,formDataObj)
         .then(res=>showAllTasks([res.data.task]))
         .catch(error=>console.log(error))
-        // //add new task
-        // axios.get(`${API}`).then(res=>{
-        //     const singleTaskArr = [res.data.data.tasks[res.data.data.tasks.length-1]]
-        //     showAllTasks(singleTaskArr)})
-        // .catch( error => console.log(error))
         }
     )
     //check for daylight saving time (DST)
