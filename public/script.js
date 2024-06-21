@@ -158,24 +158,23 @@ const showAllTasks = (res)=>{
         if(formDataObj.startTime===""){
             endTimeError.textContent = "Please Provide Start Time"
         }
-        else if(formDataObj.endTime===""){
+        if(formDataObj.endTime===""){
             endTimeError.textContent = "Please Provide End Time"
         }
-        else{
-            //create task 
-            const date = new Date();
-            const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000 ); 
-            e.target.children[0].children[2].value = localDate.toISOString().substring(0, 16);
-            axios.post(`${API}`,formDataObj)
-            .then(res=>console.log("done"))
-            .catch(error=>console.log(error))
-            // //add new task
-            // axios.get(`${API}`).then(res=>{
-            //     const singleTaskArr = [res.data.data.tasks[res.data.data.tasks.length-1]]
-            //     showAllTasks(singleTaskArr)})
-            // .catch( error => console.log(error))
+        //create task 
+        const date = new Date();
+        const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000 ); 
+        e.target.children[0].children[2].value = localDate.toISOString().substring(0, 16);
+        axios.post(`${API}`,formDataObj)
+        .then(res=>showAllTasks([res.data.task]))
+        .catch(error=>console.log(error))
+        // //add new task
+        // axios.get(`${API}`).then(res=>{
+        //     const singleTaskArr = [res.data.data.tasks[res.data.data.tasks.length-1]]
+        //     showAllTasks(singleTaskArr)})
+        // .catch( error => console.log(error))
         }
-    })
+    )
     //check for daylight saving time (DST)
     function hasDST(date = new Date()) {
         const january = new Date(date.getFullYear(), 0, 1).getTimezoneOffset();
