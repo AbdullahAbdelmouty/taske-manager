@@ -117,10 +117,6 @@ const showAllTasks = (res)=>{
                 }).then(res=> {
                     const oneTask = document.getElementById(`popup${task._id}`);
                     oneTask.remove()
-                }).then(res=>{
-                    //diplay all tasks on the screen
-                    axios.get(`${API}`).then(res=>showAllTasks(res.data.data.tasks))
-                    .catch( error => console.log(error))
                 })
             })
             //close button in edit form
