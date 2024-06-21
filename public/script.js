@@ -115,11 +115,14 @@ const showAllTasks = (res)=>{
                     endTime: updateEndTime.value,
                     completed: isCompleted,
                 }).then(res=> {
-                    const oneTask = document.getElementById(`popup${task._id}`);
-                    oneTask.remove()
+                    console.log("edit it 1");
                     const taskNameStyle = document.getElementById(`${task._id}`);
                     console.log(task.name);
                     taskNameStyle.style.textDecoration = "line-through"
+                    const oneTask = document.getElementById(`popup${task._id}`);
+                    oneTask.remove()
+                    console.log("edit it 2");
+
                 })
             })
             //close button in edit form
